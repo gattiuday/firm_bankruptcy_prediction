@@ -1,0 +1,38 @@
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+import os
+import joblib
+
+def preprocess_data():
+    df = pd.read_csv('firm_bankruptcy_prediction/data/data.csv')
+    
+    # Separate features and target
+    X = df.drop('Bankrupt?', axis=1)
+    y = df['Bankrupt?']
+    
+    # Split into train and test
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+    
+    # Scale features
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+    
+    # Save processed data
+    os.makedirs('firm_bankruptcy_prediction/data/processed', exist_ok=True)
+    np.save('firm_bankruptcy_prediction/data/processed/X_train.npy', X_train_scaled)
+    np.save('firm_bankruptcy_prediction/data/processed/X_test.npy', X_test_scaled)
+    np.save('firm_bankruptcy_prediction/data/processed/y_train.npy', y_train)
+    np.save('firm_bankruptcy_prediction/data/processed/y_test.npy', y_test)
+    
+    # Save scaler
+    joblib.dump(scaler, 'firm_bankruptcy_prediction/data/processed/scaler.joblib')
+    
+    print("Preprocessing completed. Data saved to firm_bankruptcy_prediction/data/processed/")
+    print(f"Train shape: {X_train_scaled.shape}")
+    print(f"Test shape: {X_test_scaled.shape}")
+
+if __name__ == "__main__":
+    preprocess_data()

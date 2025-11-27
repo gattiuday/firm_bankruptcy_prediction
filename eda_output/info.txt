@@ -1,0 +1,11 @@
+Shape:
+(6819, 96)
+
+Class Distribution:
+Bankrupt?
+0    0.967737
+1    0.032263
+Name: proportion, dtype: float64
+
+Missing Values:
+0
