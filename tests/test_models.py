@@ -6,14 +6,14 @@ import os
 
 def test_models_exist():
     """Test that model files exist."""
-    assert os.path.exists('firm_bankruptcy_prediction/models/xgboost_model.json')
-    assert os.path.exists('firm_bankruptcy_prediction/models/dnn_model_sklearn.joblib')
+    assert os.path.exists('models/xgboost_model_tuned.json')
+    assert os.path.exists('models/dnn_model_sklearn_tuned.joblib')
 
 def test_xgboost_prediction():
     """Test XGBoost prediction shape and range."""
     # Load model
     model = xgb.XGBClassifier()
-    model.load_model('firm_bankruptcy_prediction/models/xgboost_model.json')
+    model.load_model('models/xgboost_model_tuned.json')
     
     # Create dummy input
     dummy_input = np.random.rand(1, 95)
@@ -29,7 +29,7 @@ def test_xgboost_prediction():
 def test_mlp_prediction():
     """Test MLP prediction shape and range."""
     # Load model
-    model = joblib.load('firm_bankruptcy_prediction/models/dnn_model_sklearn.joblib')
+    model = joblib.load('models/dnn_model_sklearn_tuned.joblib')
     
     # Create dummy input
     dummy_input = np.random.rand(1, 95)
