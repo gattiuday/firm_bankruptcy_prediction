@@ -1,12 +1,8 @@
 pandas
-numpy
-scikit-learn
-xgboost
-tensorflow
+numpy==1.26.4
+scikit-learn==1.5.1
+xgboost==3.1.2
 matplotlib
 seaborn
-ucimlrepo
 streamlit
-pytest
 shap
-numpy<2
