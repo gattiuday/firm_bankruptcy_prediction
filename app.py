@@ -12,17 +12,17 @@ st.set_page_config(page_title="Firm Bankruptcy Prediction", layout="wide")
 @st.cache_resource
 def load_assets():
     # Load Scaler
-    scaler = joblib.load('firm_bankruptcy_prediction/data/processed/scaler.joblib')
+    scaler = joblib.load('data/processed/scaler.joblib')
     
     # Load Means
-    means = joblib.load('firm_bankruptcy_prediction/data/processed/feature_means.joblib')
+    means = joblib.load('data/processed/feature_means.joblib')
     
     # Load XGBoost
     xgb_model = xgb.XGBClassifier()
-    xgb_model.load_model('firm_bankruptcy_prediction/models/xgboost_model_tuned.json')
+    xgb_model.load_model('models/xgboost_model_tuned.json')
     
     # Load MLP
-    mlp_model = joblib.load('firm_bankruptcy_prediction/models/dnn_model_sklearn_tuned.joblib')
+    mlp_model = joblib.load('models/dnn_model_sklearn_tuned.joblib')
     
     return scaler, means, xgb_model, mlp_model
 
