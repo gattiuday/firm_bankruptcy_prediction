@@ -1,9 +1,18 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-import xgboost as xgb
-import joblib
 import os
+
+print("DEBUG: Imports started")
+try:
+    import streamlit as st
+    print("DEBUG: Streamlit imported")
+    import pandas as pd
+    import numpy as np
+    import xgboost as xgb
+    print(f"DEBUG: XGBoost version {xgb.__version__}")
+    import joblib
+    print("DEBUG: Imports completed")
+except Exception as e:
+    print(f"DEBUG: Error during imports: {e}")
+    raise e
 
 # Set page config
 st.set_page_config(page_title="Firm Bankruptcy Prediction", layout="wide")
